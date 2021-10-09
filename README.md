@@ -20,3 +20,6 @@ In what follows, we present two samples of real videos and three examples of rep
 + Replay attack\
 \
 ![Face-Anti-Spoofing](SampleOutput/fake.gif)
+\
+## Announcement
+Please feel free to contact me if you have any questions or you want the pre-trained model. 

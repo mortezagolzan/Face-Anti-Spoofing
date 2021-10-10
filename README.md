@@ -23,3 +23,17 @@ In what follows, we present two samples of real videos and three examples of rep
 \
 ## Announcement
 Please feel free to contact me if you have any questions or if you require the pre-trained model. 
+
+## Citation
+```
+@inproceedings{
+    feng2020deep,
+    title={Learning Generalized Spoof Cues for Face Anti-spoofing},
+    author={Haocheng Feng and Zhibin Hong and Haixiao Yue and Yang Chen and Keyao Wang and 
+    Junyu Han and Jingtuo Liu and Errui Ding},
+    year={2020},
+    eprint={2005.03922},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
+```

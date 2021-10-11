@@ -22,7 +22,7 @@ In what follows, we present two samples of real videos and three examples of rep
 ![Face-Anti-Spoofing](SampleOutput/fake.gif)
 \
 ## Announcement
-Please feel free to contact me if you have any questions or if you require the pre-trained model. 
+Please feel free to contact me if you have any questions. 
 
 ## Citation
 ```

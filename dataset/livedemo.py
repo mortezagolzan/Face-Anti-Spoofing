@@ -15,6 +15,7 @@ class LIVEDEMO(DatasetBase):
                  ann_file,
                  img_scale,
                  img_norm_cfg,
+                 videoPath,
                  extra_aug=None):
 
         super(LIVEDEMO, self).__init__(
@@ -23,6 +24,8 @@ class LIVEDEMO(DatasetBase):
             img_scale,
             img_norm_cfg,
             extra_aug)
+
+        self.videoPath = videoPath
 
     def get_face(self,img):
         mtcnn = MTCNN(image_size=224,post_process=False, margin=0)
@@ -36,9 +39,9 @@ class LIVEDEMO(DatasetBase):
 
     def test(self):
         def reader():
-            cap= cv2.VideoCapture('/content/rooz_roozphone_fake.avi')
+            cap= cv2.VideoCapture(self.videoPath)
             p=0
-            while (p<1):
+            while (p<64):
               p=p+1
               ret, frame = cap.read()
               if ret:

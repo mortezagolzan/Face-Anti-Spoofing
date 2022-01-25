@@ -131,6 +131,25 @@ class Runnner(object):
         label.stop_gradient = True
         return imgs, mask, label
 
+    def test_liveDemo(self, is_show=False, thr='auto'):
+        results = []
+        place = fluid.CUDAPlace(0)
+        
+        with fluid.dygraph.guard(place):
+            self.init_model()
+            self.model.eval()
+            test_loader = paddle.batch(self.dataset.test(), batch_size=self.val_batch_size, drop_last=False)
+            for iter, datas in enumerate(test_loader()):
+                batch_size = len(datas)
+                imgs = np.array([data[0] for data in datas]).astype(np.float32) 
+                imgs = fluid.dygraph.to_variable(imgs)
+                cue = self.model(imgs, label='', return_loss=False)
+                for i in range(batch_size):
+                    score = 1 - cue[i, ...].mean()
+                    results.append(score)     
+        score = eval_metric_liveDemo(results, thr=thr, type=self.eval_type, res_dir=self.checkpoint_config['work_dir'])
+        return score
+
 
     def test(self, is_show=False, thr='auto'):
         results = []

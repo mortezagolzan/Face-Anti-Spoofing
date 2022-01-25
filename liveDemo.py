@@ -7,6 +7,7 @@ from facenet_pytorch.models.mtcnn import MTCNN
 from dataset.livedemo import LIVEDEMO
 import time
 
+videoPath = '/content/rooz_roozphone_fake.avi'
 model_cfg = dict(
     backbone=dict(
         depth=18,
@@ -74,6 +75,7 @@ test_dataset = LIVEDEMO(
     img_norm_cfg=dict(mean=(100, 100, 100), std=(80, 80, 80)),
     img_prefix='',
     ann_file='',
+    videoPath = videoPath,
     extra_aug=dict()
 )
 
@@ -115,15 +117,15 @@ def mtcnn_detect(img: np.ndarray,color) -> np.ndarray:
                     (0, 0, 255), 4)
     return img
 
-t0 = time.time()
+#t0 = time.time()
 pred = runner.test_liveDemo(thr=0.7896)
-t1 = time.time()
+#t1 = time.time()
 
-print('Total Time For Execution is: ',t1-t0)
+#print('Total Time For Execution is: ',t1-t0)
 
 phases = [pred[x:x+5] for x in range(0, len(pred),5)]
 
-cap= cv2.VideoCapture('/content/rooz_roozphone_fake.avi')
+cap= cv2.VideoCapture(videoPath)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 out = cv2.VideoWriter('output.avi',fourcc, 30.0, (1280,720))
 p=0
